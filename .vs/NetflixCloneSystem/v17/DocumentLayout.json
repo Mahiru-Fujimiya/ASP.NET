@@ -1,0 +1,462 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ASP.NET\\NetflixCloneSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\igenreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\igenreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\watchhistoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\watchhistoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\watchhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\watchhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\controllers\\watchhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\controllers\\watchhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\controllers\\episodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\controllers\\episodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\iwatchhistoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\iwatchhistoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\istreamingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\istreamingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\genreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\genreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\controllers\\genrecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\controllers\\genrecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\netflix.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\netflix.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|d:\\asp.net\\netflixclonesystem\\netflix.business\\services\\streamingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D2DADA-82E7-446F-B525-082E97656A2E}|Netflix.Business\\Netflix.Business.csproj|solutionrelative:netflix.business\\services\\streamingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|d:\\asp.net\\netflixclonesystem\\netflix.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FA863829-7CFA-412E-8415-94FF9F4E3D9F}|Netflix.API\\Netflix.API.csproj|solutionrelative:netflix.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\episode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\episode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|d:\\asp.net\\netflixclonesystem\\netflix.data\\entities\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FDE51E2-D3DB-4EEB-850A-A1D8BEC69B78}|Netflix.Data\\Netflix.Data.csproj|solutionrelative:netflix.data\\entities\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WatchHistoryService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\WatchHistoryService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\WatchHistoryService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\WatchHistoryService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\WatchHistoryService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAjwBsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T04:18:07.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Program.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Program.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Program.cs",
+              "RelativeToolTip": "Netflix.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T01:54:35.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Favorite.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Favorite.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\Favorite.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Favorite.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\Favorite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:05:04.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WatchHistory.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\WatchHistory.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\WatchHistory.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\WatchHistory.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\WatchHistory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:01:08.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IGenreService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IGenreService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\IGenreService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IGenreService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\IGenreService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T03:52:25.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\IAuthService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IAuthService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:07:10.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WatchHistoryController.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\WatchHistoryController.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Controllers\\WatchHistoryController.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\WatchHistoryController.cs",
+              "RelativeToolTip": "Netflix.API\\Controllers\\WatchHistoryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T04:18:19.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IWatchHistoryService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IWatchHistoryService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\IWatchHistoryService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IWatchHistoryService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\IWatchHistoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T04:17:52.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\AuthService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\AuthService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:07:09.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EpisodeController.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\EpisodeController.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Controllers\\EpisodeController.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\EpisodeController.cs",
+              "RelativeToolTip": "Netflix.API\\Controllers\\EpisodeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T03:56:23.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Netflix.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:18:05.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\User.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\User.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T01:52:36.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\MovieService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\MovieService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\MovieService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\MovieService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:07:11.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IMovieService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IMovieService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\IMovieService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IMovieService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\IMovieService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:07:11.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MovieController.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\MovieController.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Controllers\\MovieController.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\MovieController.cs",
+              "RelativeToolTip": "Netflix.API\\Controllers\\MovieController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wC8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:18:09.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IStreamingService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IStreamingService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\IStreamingService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\IStreamingService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\IStreamingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:14:36.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GenreService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\GenreService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\GenreService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\GenreService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\GenreService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T03:47:22.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GenreController.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\GenreController.cs",
+              "RelativeDocumentMoniker": "Netflix.API\\Controllers\\GenreController.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Controllers\\GenreController.cs",
+              "RelativeToolTip": "Netflix.API\\Controllers\\GenreController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T03:50:09.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Netflix.API",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Netflix.API.csproj",
+              "RelativeDocumentMoniker": "Netflix.API\\Netflix.API.csproj",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Netflix.API.csproj",
+              "RelativeToolTip": "Netflix.API\\Netflix.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-03T02:31:52.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\appsettings.json",
+              "RelativeDocumentMoniker": "Netflix.API\\appsettings.json",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\appsettings.json",
+              "RelativeToolTip": "Netflix.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-03T01:54:21.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "StreamingService.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\StreamingService.cs",
+              "RelativeDocumentMoniker": "Netflix.Business\\Services\\StreamingService.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Business\\Services\\StreamingService.cs",
+              "RelativeToolTip": "Netflix.Business\\Services\\StreamingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:07:12.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Netflix.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Netflix.API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-03T02:08:00.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Context\\AppDbContext.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "Netflix.Data\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T01:53:29.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Genre.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\Genre.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Genre.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\Genre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T02:04:56.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Movie.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Movie.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\Movie.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Movie.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\Movie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T01:52:52.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Episode.cs",
+              "DocumentMoniker": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Episode.cs",
+              "RelativeDocumentMoniker": "Netflix.Data\\Entities\\Episode.cs",
+              "ToolTip": "D:\\ASP.NET\\NetflixCloneSystem\\Netflix.Data\\Entities\\Episode.cs",
+              "RelativeToolTip": "Netflix.Data\\Entities\\Episode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T01:50:07.045Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

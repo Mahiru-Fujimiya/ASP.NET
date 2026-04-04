@@ -1,0 +1,14 @@
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\bin\Debug\net9.0\Netflix.Data.deps.json
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\bin\Debug\net9.0\Netflix.Data.runtimeconfig.json
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\bin\Debug\net9.0\Netflix.Data.dll
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\bin\Debug\net9.0\Netflix.Data.pdb
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.csproj.AssemblyReference.cache
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.AssemblyInfoInputs.cache
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.AssemblyInfo.cs
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.csproj.CoreCompileInputs.cache
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.dll
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\refint\Netflix.Data.dll
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.pdb
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\Netflix.Data.genruntimeconfig.cache
+D:\ASP.NET\NetflixCloneSystem\Netflix.Data\obj\Debug\net9.0\ref\Netflix.Data.dll
