@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đang xem: LawwyFlix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --netflix-red: #e50914;
+            --dark-bg: #141414;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .video-wrapper {
+            background: #000;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            outline: none;
+        }
+
+        .content-container {
+            padding: 40px 5%;
+        }
+
+        .ep-list {
+            background: #262626;
+            border-radius: 8px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .ep-item {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .ep-item:hover, .ep-item.active {
+                background: #404040;
+                border-left: 4px solid var(--netflix-red);
+            }
+
+        .comment-card {
+            background: #1f1f1f;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            margin-right: 12px;
+        }
+
+        .btn-netflix {
+            background: var(--netflix-red);
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .movie-info h2 {
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .badge-rating {
+            background: #46d369;
+            color: black;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-transparent px-4 py-3">
+        <a href="/index.html" class="text-white text-decoration-none fs-4"><i class="fas fa-arrow-left me-3"></i> Quay lại</a>
+        <span class="navbar-brand fw-bold text-danger">LAWWYFLIX</span>
+    </nav>
+
+    <div class="video-wrapper">
+        <video id="player" controls autoplay>
+            <source src="" type="video/mp4">
+            Trình duyệt của Boss không hỗ trợ xem video này.
+        </video>
+    </div>
+
+    <div class="content-container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="movie-info mb-5">
+                    <h2 id="m-title">Đang tải tên phim...</h2>
+                    <div class="d-flex gap-3 align-items-center mb-3">
+                        <span class="badge-rating">98% Match</span>
+                        <span class="text-secondary" id="m-year">2026</span>
+                        <span class="border border-secondary px-2 text-secondary">18+</span>
+                        <span class="text-secondary" id="m-genre">Anime</span>
+                    </div>
+                    <p class="text-light fs-5" id="m-desc">Mô tả phim sẽ xuất hiện ở đây...</p>
+                </div>
+
+                <hr class="border-secondary my-5">
+
+                <div class="comments-section">
+                    <h4 class="mb-4"><i class="far fa-comments me-2"></i> Bình luận</h4>
+                    <div class="d-flex mb-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" class="user-avatar">
+                        <div class="flex-grow-1">
+                            <textarea id="comment-input" class="form-control bg-dark text-white border-secondary" rows="2" placeholder="Thêm bình luận công khai..."></textarea>
+                            <div class="text-end mt-2">
+                                <button class="btn btn-netflix" onclick="postComment()">Bình luận</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="comments-list">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="ep-list">
+                    <h5 class="mb-4">Danh sách tập</h5>
+                    <div id="episodes-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "https://localhost:7254/api";
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if(!movieId) { location.href = "/index.html"; return; }
+            loadMovieDetails();
+            loadEpisodes();
+            loadComments();
+        });
+
+        // 1. Tải thông tin phim
+        async function loadMovieDetails() {
+            const res = await fetch(`${API_BASE}/movies/${movieId}`);
+            const m = await res.json();
+            document.getElementById('m-title').innerText = m.title;
+            document.getElementById('m-desc').innerText = m.description || "Không có mô tả.";
+            document.title = `Đang xem: ${m.title}`;
+        }
+
+        // 2. Tải danh sách tập & Xử lý phát video
+        async function loadEpisodes() {
+            const res = await fetch(`${API_BASE}/episodes/movie/${movieId}`);
+            const episodes = await res.json();
+            const container = document.getElementById('episodes-container');
+
+            container.innerHTML = episodes.map((ep, index) => `
+                <div class="ep-item ${index === 0 ? 'active' : ''}" onclick="playVideo('${ep.videoUrl}', this)">
+                    <span>Tập ${ep.episodeNumber}: ${ep.title}</span>
+                    <i class="fas fa-play-circle opacity-50"></i>
+                </div>
+            `).join('');
+
+            if(episodes.length > 0) playVideo(episodes[0].videoUrl);
+        }
+
+        function playVideo(url, el) {
+            const player = document.getElementById('player');
+            player.src = url;
+            player.play();
+            if(el) {
+                document.querySelectorAll('.ep-item').forEach(i => i.classList.remove('active'));
+                el.classList.add('active');
+            }
+        }
+
+        // 3. Hệ thống Bình luận
+        async function loadComments() {
+            const res = await fetch(`${API_BASE}/movies/${movieId}/comments`);
+            const comments = await res.json();
+            document.getElementById('comments-list').innerHTML = comments.map(c => `
+                <div class="comment-card">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="https://ui-avatars.com/api/?name=${c.username}&background=random" class="user-avatar" style="width:30px; height:30px">
+                        <strong class="me-2">${c.username}</strong>
+                        <small class="text-secondary">Vừa xong</small>
+                    </div>
+                    <p class="mb-0 text-light">${c.content}</p>
+                </div>
+            `).join('');
+        }
+
+        async function postComment() {
+            const content = document.getElementById('comment-input').value;
+            if(!content) return;
+            // Gọi API POST /api/movies/{id}/comments
+            alert("Đã gửi bình luận: " + content);
+            document.getElementById('comment-input').value = "";
+        }
+    </script>
+</body>
+</html>

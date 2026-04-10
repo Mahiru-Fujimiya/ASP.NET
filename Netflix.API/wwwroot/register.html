@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LawwyFlix | Đăng ký tài khoản</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --netflix-red: #e50914;
+        }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bca1-07e3f8eb14b8/afdb162e-8367-4275-8012-79017772c72b/VN-vi-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .register-card {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 60px 68px;
+            width: 450px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+            .register-card h1 {
+                color: white;
+                font-weight: bold;
+                margin-bottom: 28px;
+            }
+
+        .form-control {
+            background: #333;
+            border: none;
+            color: white;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+            .form-control:focus {
+                background: #454545;
+                color: white;
+                box-shadow: none;
+                border: none;
+            }
+
+        .btn-register {
+            background: var(--netflix-red);
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 24px;
+        }
+
+            .btn-register:hover {
+                background: #b20710;
+            }
+
+        .login-link {
+            color: #b3b3b3;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+            .login-link a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="register-card">
+        <h1>Đăng ký</h1>
+        <div id="status-msg" class="alert d-none"></div>
+
+        <form id="register-form">
+            <input type="text" id="reg-user" class="form-control" placeholder="Tên tài khoản (Username)" required>
+            <input type="email" id="reg-email" class="form-control" placeholder="Địa chỉ Email" required>
+            <input type="password" id="reg-pass" class="form-control" placeholder="Mật khẩu" required>
+            <input type="password" id="reg-confirm" class="form-control" placeholder="Xác nhận mật khẩu" required>
+
+            <button type="submit" class="btn btn-register">Đăng ký ngay</button>
+        </form>
+
+        <div class="login-link">
+            <span>Đã có tài khoản?</span>
+            <a href="/login.html">Đăng nhập ngay.</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "https://localhost:7254/api";
+
+        document.getElementById('register-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const msgBox = document.getElementById('status-msg');
+            const user = document.getElementById('reg-user').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+            const confirm = document.getElementById('reg-confirm').value;
+
+            // 1. Kiểm tra mật khẩu khớp nhau
+            if (pass !== confirm) {
+                showMsg("Mật khẩu xác nhận không khớp!", "danger");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, email: email, password: pass })
+                });
+
+                if (res.ok) {
+                    showMsg("Đăng ký thành công! Đang chuyển hướng...", "success");
+                    setTimeout(() => location.href = "/login.html", 2000);
+                } else {
+                    const error = await res.json();
+                    showMsg(error.message || "Có lỗi xảy ra, Boss thử lại nhé!", "danger");
+                }
+            } catch (err) {
+                showMsg("Không thể kết nối API!", "danger");
+            }
+        };
+
+        function showMsg(text, type) {
+            const msgBox = document.getElementById('status-msg');
+            msgBox.innerText = text;
+            msgBox.className = `alert alert-${type}`;
+            msgBox.classList.remove('d-none');
+        }
+    </script>
+</body>
+</html>

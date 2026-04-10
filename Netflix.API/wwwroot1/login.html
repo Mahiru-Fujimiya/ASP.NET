@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập - Lawwy Netflix</title>
+    <style>
+        body {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6ed7c95-4505-4ad5-9df3-bb11909eceef/VN-vi-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background: rgba(0,0,0,0.75);
+            padding: 60px;
+            border-radius: 8px;
+            width: 350px;
+            text-align: left;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: none;
+            background: #333;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #e50914;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #b20710;
+            }
+
+        p {
+            color: #737373;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>Đăng nhập</h2>
+        <input type="text" id="username" placeholder="Tên đăng nhập (LawwyPhuc)">
+        <input type="password" id="password" placeholder="Mật khẩu">
+        <button onclick="handleLogin()">Đăng nhập</button>
+        <p>Mới tham gia Netflix? <a href="#">Đăng ký ngay.</a></p>
+    </div>
+
+    <script>
+        async function handleLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            // Gọi API Auth của bạn
+            const res = await fetch('https://localhost:7062/api/Auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user, password: pass })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                localStorage.setItem('token', data.token); // Lưu token để dùng cho các trang sau
+                localStorage.setItem('username', user);
+                alert("Đăng nhập thành công!");
+                window.location.href = 'index.html'; // Chuyển về trang chủ
+            } else {
+                alert("Sai tên đăng nhập hoặc mật khẩu rồi Phúc ơi!");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LawwyFlix | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --netflix-red: #e50914;
+            --dark-bg: #141414;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 1. Navbar Xịn */
+        .navbar {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            transition: 0.5s;
+            z-index: 1000;
+        }
+
+            .navbar.scrolled {
+                background: #141414;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+
+        .navbar-brand {
+            color: var(--netflix-red) !important;
+            font-weight: 900;
+            font-size: 2.2rem;
+        }
+
+        .nav-link {
+            color: #e5e5e5 !important;
+            font-size: 0.9rem;
+            margin-left: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #search-input {
+            width: 0;
+            border: none;
+            background: #000;
+            color: white;
+            transition: 0.4s;
+            padding: 5px 0;
+            border: 1px solid transparent;
+        }
+
+            #search-input.active {
+                width: 200px;
+                padding: 5px 10px;
+                border-color: white;
+                margin-right: 10px;
+            }
+
+        /* 2. Hero Banner Thật */
+        .hero {
+            height: 85vh;
+            width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+            transition: 0.5s;
+        }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to right, rgba(0,0,0,0.8), transparent 60%), linear-gradient(to top, var(--dark-bg), transparent 30%);
+            }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn-play {
+            background: white;
+            color: black;
+            border: none;
+            padding: 10px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .btn-info {
+            background: rgba(109, 109, 110, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* 3. Movie Row & Cards */
+        .movie-section {
+            margin-top: -100px;
+            position: relative;
+            z-index: 20;
+            padding-bottom: 50px;
+        }
+
+        .row-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-left: 4%;
+            margin-bottom: 10px;
+            color: #e5e5e5;
+        }
+
+        .movie-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 10px;
+            padding: 20px 4%;
+        }
+
+            .movie-slider::-webkit-scrollbar {
+                display: none;
+            }
+
+        .movie-card {
+            flex: 0 0 240px;
+            height: 135px;
+            background: #222;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .movie-card:hover {
+                transform: scale(1.3);
+                z-index: 100;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            }
+
+            .movie-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            background: rgba(20,20,20,0.9);
+            display: none;
+            font-size: 0.8rem;
+        }
+
+        .movie-card:hover .card-info {
+            display: block;
+        }
+
+        /* 4. Skeleton Loading */
+        .skeleton {
+            background: #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .skeleton::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+                animation: loading 1.5s infinite;
+            }
+
+        @keyframes loading {
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* 5. Footer */
+        footer {
+            padding: 80px 4% 30px;
+            color: #808080;
+            font-size: 0.8rem;
+            background: var(--dark-bg);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+            .footer-links a {
+                color: #808080;
+                text-decoration: none;
+            }
+
+                .footer-links a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top px-4">
+        <a class="navbar-brand" href="#">LAWWYFLIX</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Phim Bộ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Phim Lẻ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Anime</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Danh sách của tôi</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Tên phim, thể loại...">
+                    <i class="fas fa-search cursor-pointer" id="search-btn"></i>
+                </div>
+                <i class="fas fa-bell cursor-pointer"></i>
+                <div class="dropdown">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" width="35" class="rounded cursor-pointer" data-bs-toggle="dropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end p-2">
+                        <li><a class="dropdown-item" href="/admin.html"><i class="fas fa-tools me-2"></i>Admin Dashboard</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-heart me-2"></i>Favorites</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero skeleton" id="hero-banner">
+        <div class="hero-content">
+            <h1 class="hero-title" id="h-title"></h1>
+            <p class="hero-desc fs-5" id="h-desc"></p>
+            <div class="d-flex gap-3 mt-4" id="h-btns" style="display:none !important;">
+                <button class="btn btn-play"><i class="fas fa-play me-2"></i>Phát ngay</button>
+                <button class="btn btn-info"><i class="fas fa-info-circle me-2"></i>Thông tin</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="movie-section">
+        <p class="row-title">🔥 Phim Mới & Thịnh Hành</p>
+        <div class="movie-slider" id="row-new"></div>
+
+        <p class="row-title">🏆 Top Rated</p>
+        <div class="movie-slider" id="row-top"></div>
+
+        <p class="row-title">🏷️ Anime Đặc Sắc</p>
+        <div class="movie-slider" id="row-anime"></div>
+    </div>
+
+    <footer>
+        <div class="mb-4 fs-4"><i class="fab fa-facebook-f me-3"></i><i class="fab fa-instagram me-3"></i><i class="fab fa-youtube"></i></div>
+        <div class="footer-links">
+            <a href="#">Âm thanh và Phụ đề</a><a href="#">Trung tâm trợ giúp</a><a href="#">Thẻ quà tặng</a><a href="#">Điều khoản sử dụng</a>
+            <a href="#">Quyền riêng tư</a><a href="#">Thông tin doanh nghiệp</a><a href="#">Liên hệ với chúng tôi</a><a href="#">Media Center</a>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm mb-3">Service Code</button>
+        <p>© 2026 LawwyFlix System - Mahiru Phuc Project</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE = "https://localhost:7254/api";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initPage();
+            // Xử lý cuộn Navbar
+            window.addEventListener('scroll', () => {
+                document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+            });
+            // Xử lý Search co giãn
+            document.getElementById('search-btn').onclick = () => {
+                document.getElementById('search-input').classList.toggle('active');
+                document.getElementById('search-input').focus();
+            };
+        });
+
+        async function initPage() {
+            try {
+                // Hiện skeleton loading
+                renderSkeletons('row-new'); renderSkeletons('row-top'); renderSkeletons('row-anime');
+
+                const res = await fetch(`${API_BASE}/movies`);
+                const data = await res.json();
+                const movies = data.data || data;
+
+                if (movies.length > 0) {
+                    const head = movies[0];
+                    const hero = document.getElementById('hero-banner');
+                    hero.classList.remove('skeleton');
+                    hero.style.backgroundImage = `url('${head.poster || 'https://images.alphacoders.com/133/1338193.png'}')`;
+                    document.getElementById('h-title').innerText = head.title;
+                    document.getElementById('h-desc').innerText = head.description || "Khám phá thế giới điện ảnh đỉnh cao cùng LawwyFlix.";
+                    document.getElementById('h-btns').style.display = 'flex';
+                }
+
+                renderMovies('row-new', movies);
+                renderMovies('row-top', [...movies].sort(() => 0.5 - Math.random()));
+                renderMovies('row-anime', movies.filter(m => m.genreId === 1));
+
+            } catch (e) { console.error("API Die!"); }
+        }
+
+        function renderMovies(id, list) {
+            document.getElementById(id).innerHTML = list.map(m => `
+                <div class="movie-card" onclick="location.href='/watch.html?id=${m.id}'">
+                    <img src="${m.poster || 'https://via.placeholder.com/240x135?text=LawwyFlix'}">
+                    <div class="card-info">
+                        <div class="d-flex justify-content-between">
+                            <span>${m.title}</span>
+                            <span class="text-success fw-bold">98% Match</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSkeletons(id) {
+            document.getElementById(id).innerHTML = Array(6).fill('<div class="movie-card skeleton"></div>').join('');
+        }
+    </script>
+</body>
+</html>
