@@ -1,6 +1,0 @@
-@Netflix.API_HostAddress = http://localhost:5156
-
-GET {{Netflix.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
