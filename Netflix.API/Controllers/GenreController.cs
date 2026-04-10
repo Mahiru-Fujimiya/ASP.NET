@@ -1,15 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Netflix.Business.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Netflix.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Tags("Genres - Quản lý Thể loại")]
 public class GenreController : ControllerBase
 {
-    private readonly IGenreService _genreService;
-    public GenreController(IGenreService genreService) => _genreService = genreService;
-
     [HttpGet]
-    public IActionResult GetAll() => Ok(_genreService.GetAllGenres());
+    public IActionResult GetGenres() => Ok();
+
+    [HttpGet("{id}")]
+    public IActionResult GetGenre(int id) => Ok();
+
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
+    public IActionResult CreateGenre([FromBody] GenreDto model) => Created("", model);
+
+    [Authorize(Roles = "Admin")]
+    [HttpDelete("{id}")]
+    public IActionResult DeleteGenre(int id) => NoContent();
+}
+
+public class GenreDto
+{
+    public string Name { get; set; } = string.Empty;
+    public string? Description { get; set; }
 }

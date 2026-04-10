@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Netflix.API.props" />
-</Project>

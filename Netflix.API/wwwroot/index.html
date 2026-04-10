@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lawwy Netflix - Anime World</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* Navbar và Thanh tìm kiếm */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #e50914;
+            font-size: 2.5rem;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        input, select {
+            background: rgba(0,0,0,0.75);
+            color: white;
+            border: 1px solid #666;
+            padding: 10px 15px;
+            border-radius: 4px;
+            outline: none;
+        }
+
+            input:focus, select:focus {
+                border-color: #e50914;
+            }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #e50914;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background: #b20710;
+            }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+            .btn-outline:hover {
+                background: white;
+                color: black;
+            }
+
+        /* Grid phim */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .movie-card {
+            background: #181818;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+            .movie-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+                z-index: 5;
+                border: 1px solid #fff;
+            }
+
+            .movie-card img {
+                width: 100%;
+                height: 320px;
+                object-fit: cover;
+            }
+
+        .movie-info {
+            padding: 12px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Modal Player */
+        #player-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            width: 85%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            background: #e50914;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+        }
+
+        /* Tiêu đề mục */
+        .section-title {
+            color: white;
+            border-left: 4px solid #e50914;
+            padding-left: 10px;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1 onclick="window.location.reload()">NETFLIX <span style="font-weight: 100; color: #fff;">ANIME</span></h1>
+
+        <div class="search-controls">
+            <input type="text" id="search-input" placeholder="Tìm tên phim..." oninput="filterMovies()">
+            <select id="genre-filter" onchange="filterMovies()">
+                <option value="all">Tất cả thể loại</option>
+                <option value="1">Hành Động</option>
+                <option value="2">Phiêu Lưu</option>
+                <option value="4">Chuyển Sinh (Isekai)</option>
+            </select>
+            <div id="auth-section"></div>
+        </div>
+    </div>
+
+    <div id="favorites-section" style="display: none;">
+        <h2 class="section-title">Danh Sách Của Bạn (My List)</h2>
+        <div class="movie-grid" id="favorite-list"></div>
+    </div>
+
+    <h2 class="section-title">Tất Cả Anime</h2>
+    <div class="movie-grid" id="movie-list"></div>
+
+    <div id="player-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePlayer()">ĐÓNG &times;</span>
+            <div id="video-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_MOVIE = 'https://localhost:7062/api/Movie';
+        const API_EPISODE = 'https://localhost:7062/api/Episode/movie';
+        const API_FAVORITE = 'https://localhost:7062/api/Favorite';
+        const API_WATCH_HISTORY = 'https://localhost:7062/api/WatchHistory';
+
+        let allMovies = [];
+        const currentUserId = 1; // Giả định ID user là 1 cho mục đích demo
+
+        // 1. Kiểm tra trạng thái Đăng nhập
+        function checkAuth() {
+            const user = localStorage.getItem('username');
+            const authSection = document.getElementById('auth-section');
+
+            if (user) {
+                authSection.innerHTML = `
+                        <span style="margin-right: 15px;">Xin chào, <b>${user}</b>!</span>
+                        <button class="btn btn-outline" onclick="logout()">Đăng xuất</button>
+                    `;
+            } else {
+                authSection.innerHTML = `
+                        <button class="btn btn-primary" onclick="location.href='login.html'">Đăng nhập</button>
+                    `;
+            }
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.reload();
+        }
+
+        // 2. Load danh sách phim từ API
+        async function loadMovies() {
+            try {
+                const res = await fetch(API_MOVIE);
+                allMovies = await res.json();
+                renderMovies(allMovies, 'movie-list', true);
+            } catch (err) { console.error("Lỗi kết nối API Movie:", err); }
+        }
+
+        // 3. Load danh sách Yêu Thích
+        async function loadFavorites() {
+            const user = localStorage.getItem('username');
+            if (!user) return; // Chưa đăng nhập thì không tải phim yêu thích
+
+            try {
+                const res = await fetch(`${API_FAVORITE}/user/${currentUserId}`);
+                if (res.ok) {
+                    const favMovies = await res.json();
+                    if (favMovies.length > 0) {
+                        document.getElementById('favorites-section').style.display = 'block';
+                        renderMovies(favMovies, 'favorite-list', false); // false = không hiện nút thả tim ở khu vực này nữa
+                    }
+                }
+            } catch (err) { console.log("Lỗi load phim yêu thích:", err); }
+        }
+
+        // Hàm dùng chung để vẽ phim ra màn hình
+        function renderMovies(movies, containerId, showHeart) {
+            const list = document.getElementById(containerId);
+            if (movies.length === 0 && containerId === 'movie-list') {
+                list.innerHTML = `<p style="grid-column: 1/-1;">Không tìm thấy phim...</p>`;
+                return;
+            }
+
+            list.innerHTML = movies.map(m => `
+                    <div class="movie-card">
+                        <img src="${m.poster}" alt="${m.title}" onclick="playMovie(${m.id})">
+                        <div class="movie-info" style="${!showHeart ? 'justify-content: center;' : ''}">
+                            <span>${m.title}</span>
+                            ${showHeart ? `<button onclick="addToFavorite(${m.id})" style="background:none; border:none; color:#e50914; font-size:20px; cursor:pointer;" title="Thêm vào yêu thích">❤️</button>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        // 4. Lọc phim
+        function filterMovies() {
+            const keyword = document.getElementById('search-input').value.toLowerCase();
+            const genreId = document.getElementById('genre-filter').value;
+
+            const filtered = allMovies.filter(m => {
+                const matchesName = m.title.toLowerCase().includes(keyword);
+                const matchesGenre = (genreId === "all") || (m.genreId == genreId);
+                return matchesName && matchesGenre;
+            });
+
+            renderMovies(filtered, 'movie-list', true);
+        }
+
+        // 5. Chạy phim & Ghi nhận lịch sử xem
+        async function playMovie(movieId) {
+            // Ghi nhận lịch sử xem phim
+            recordWatchHistory(movieId);
+
+            try {
+                const res = await fetch(`${API_EPISODE}/${movieId}`);
+                const episodes = await res.json();
+
+                if (episodes.length > 0) {
+                    const embedUrl = episodes[0].videoUrl.replace("watch?v=", "embed/");
+                    document.getElementById('video-container').innerHTML = `
+                            <iframe src="${embedUrl}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        `;
+                    document.getElementById('player-modal').style.display = 'flex';
+                } else {
+                    alert("Phim này chưa có tập nào Lawwy ơi!");
+                }
+            } catch (err) { alert("Lỗi lấy tập phim!"); }
+        }
+
+        async function recordWatchHistory(movieId) {
+            const user = localStorage.getItem('username');
+            if (!user) return; // Nếu chưa đăng nhập thì không ghi lịch sử
+
+            try {
+                await fetch(API_WATCH_HISTORY, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: currentUserId, movieId: movieId })
+                });
+            } catch (err) { console.log("Lỗi lưu lịch sử", err); }
+        }
+
+        // 6. Thả tim (Yêu thích)
+        async function addToFavorite(movieId) {
+            const username = localStorage.getItem('username');
+            if (!username) {
+                alert("Bạn phải Đăng nhập mới thả tim được nhé!");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const res = await fetch(API_FAVORITE, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: currentUserId, movieId: movieId })
+                });
+
+                if (res.ok) {
+                    alert("Đã thêm vào danh sách yêu thích của bạn! ❤️");
+                    loadFavorites(); // Tải lại danh sách yêu thích ngay lập tức
+                } else {
+                    alert("Hình như bạn đã thích phim này rồi!");
+                }
+            } catch (err) { alert("Chưa kết nối được API thả tim."); }
+        }
+
+        function closePlayer() {
+            document.getElementById('player-modal').style.display = 'none';
+            document.getElementById('video-container').innerHTML = '';
+        }
+
+        // --- KHỞI CHẠY HỆ THỐNG ---
+        checkAuth();
+        loadMovies();
+        loadFavorites();
+    </script>
+</body>
+</html>

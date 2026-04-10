@@ -1,43 +1,65 @@
-﻿using Netflix.Data.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Netflix.Data.Context;
+using Netflix.Data.Entities;
 
 namespace Netflix.Business.Services;
 
 public class MovieService : IMovieService
 {
     private readonly AppDbContext _context;
+    public MovieService(AppDbContext context) => _context = context;
 
-    // Inject AppDbContext vào thông qua Constructor
-    public MovieService(AppDbContext context)
+    public async Task<(List<Movie> Items, int TotalCount)> GetMoviesAsync(string? keyword, int? genreId, int page, int pageSize)
     {
-        _context = context;
+        var query = _context.Movies.Include(m => m.Genre).AsQueryable();
+
+        // Lọc theo từ khóa
+        if (!string.IsNullOrEmpty(keyword))
+            query = query.Where(m => m.Title.Contains(keyword));
+
+        // Lọc theo thể loại
+        if (genreId.HasValue)
+            query = query.Where(m => m.GenreId == genreId);
+
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip((page - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToListAsync();
+
+        return (items, totalCount);
     }
 
-    // Lấy danh sách phim thực tế từ bảng Movies
-    public object GetMovies()
+    public async Task<Movie> GetMovieByIdAsync(int id) =>
+        await _context.Movies.Include(m => m.Genre).Include(m => m.Episodes).FirstOrDefaultAsync(m => m.Id == id);
+
+    // 1. Hàm AddMovieAsync (Sửa SaveChanges thành SaveChangesAsync)
+    public async Task AddMovieAsync(Movie movie)
     {
-        var movies = _context.Movies
-                             .Include(m => m.Genre) // Lấy kèm thông tin Thể loại (Chương 5)
-                             .ToList();
-        return movies;
+        _context.Movies.Add(movie);
+        await _context.SaveChangesAsync(); // <--- THÊM "Async" VÀO ĐÂY
     }
 
-    // Lấy chi tiết 1 bộ phim theo ID
-    public object GetMovieById(int id)
+    // 2. Hàm UpdateMovieAsync (Bạn đã làm đúng rồi, nhưng kiểm tra lại nhé)
+    public async Task UpdateMovieAsync(int id, Movie movieUpdate)
     {
-        var movie = _context.Movies
-                            .Include(m => m.Genre)
-                            .Include(m => m.Episodes) // Lấy kèm các tập phim
-                            .FirstOrDefault(m => m.Id == id);
-        return movie;
+        var movie = await _context.Movies.FindAsync(id);
+        if (movie != null)
+        {
+            movie.Title = movieUpdate.Title;
+            movie.Poster = movieUpdate.Poster;
+            movie.GenreId = movieUpdate.GenreId;
+            await _context.SaveChangesAsync(); // <--- Dòng này ĐÚNG
+        }
     }
 
-    public object SearchMovies(string title)
+    // 3. Hàm DeleteMovieAsync (Sửa SaveChanges thành SaveChangesAsync)
+    public async Task DeleteMovieAsync(int id)
     {
-        // Tìm kiếm phim có tên chứa từ khóa (không phân biệt hoa thường)
-        return _context.Movies
-                       .Include(m => m.Genre)
-                       .Where(m => m.Title.Contains(title))
-                       .ToList();
+        var movie = await _context.Movies.FindAsync(id);
+        if (movie != null)
+        {
+            _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync(); // <--- THÊM "Async" VÀO ĐÂY
+        }
     }
 }
