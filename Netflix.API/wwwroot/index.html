@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LawwyFlix | Xem phim thỏa thích</title>
+    <!-- Thư viện Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link CSS Mới -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="/index.html">LAWWYFLIX</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <i class="fas fa-bars text-white fs-4"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link active fw-bold" href="#">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Phim T.Hình</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Phim Điện ảnh</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Phim Anime</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Danh sách của tôi</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon" id="search-btn"></i>
+                    <input type="text" id="search-input" placeholder="Phim, diễn viên, thể loại...">
+                </div>
+                <a href="#" class="nav-link"><i class="fas fa-bell fs-5"></i></a>
+                <div class="dropdown">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" width="35" class="rounded cursor-pointer" data-bs-toggle="dropdown" style="cursor: pointer;">
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end p-2 border-0 shadow" style="background: rgba(20,20,20,0.95); backdrop-filter: blur(10px);">
+                        <li><a class="dropdown-item py-2" href="/admin.html"><i class="fas fa-tools me-3 text-secondary"></i>Quản trị viên</a></li>
+                        <li><a class="dropdown-item py-2" href="#"><i class="fas fa-user me-3 text-secondary"></i>Hồ sơ</a></li>
+                        <li><hr class="dropdown-divider border-secondary"></li>
+                        <li><a class="dropdown-item py-2 text-danger" href="/login.html"><i class="fas fa-sign-out-alt me-3"></i>Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <div class="hero skeleton" id="hero-banner">
+        <div class="hero-content">
+            <h1 class="hero-title" id="h-title"></h1>
+            <p class="hero-desc" id="h-desc"></p>
+            <div class="d-flex gap-3" id="h-btns" style="display:none !important;">
+                <button class="btn-play-hero" id="h-play-btn"><i class="fas fa-play"></i> Phát</button>
+                <button class="btn-info-hero"><i class="fas fa-info-circle"></i> Thông tin chi tiết</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN MOVIE SECTION -->
+    <div class="movie-section" id="main-section">
+        <!-- Hành Động -->
+        <h4 class="row-title">Hành Động Kịch Tính</h4>
+        <div class="movie-slider" id="row-action"></div>
+
+        <!-- Anime -->
+        <h4 class="row-title">Anime Đặc Sắc</h4>
+        <div class="movie-slider" id="row-anime"></div>
+
+        <!-- Sci-Fi -->
+        <h4 class="row-title">Khoa Học Viễn Tưởng</h4>
+        <div class="movie-slider" id="row-scifi"></div>
+        
+        <!-- Horror -->
+        <h4 class="row-title">Kinh Dị Giật Gân</h4>
+        <div class="movie-slider" id="row-horror"></div>
+    </div>
+
+    <!-- SEARCH RESULT SECTION -->
+    <div class="movie-section no-overlap" id="search-section" style="display:none; min-height: 60vh;">
+        <h4 class="row-title" id="search-title">Kết quả tìm kiếm</h4>
+        <div class="movie-slider" id="row-search" style="flex-wrap: wrap; gap: 20px; overflow-x: hidden;"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-socials mb-4">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+        <div class="footer-links">
+            <a href="#">Âm thanh và Phụ đề</a>
+            <a href="#">Mô tả Âm thanh</a>
+            <a href="#">Trung tâm trợ giúp</a>
+            <a href="#">Thẻ quà tặng</a>
+            <a href="#">Đa phương tiện</a>
+            <a href="#">Quan hệ với nhà đầu tư</a>
+            <a href="#">Việc làm</a>
+            <a href="#">Điều khoản sử dụng</a>
+            <a href="#">Quyền riêng tư</a>
+            <a href="#">Thông báo pháp lý</a>
+            <a href="#">Tùy chọn cookie</a>
+            <a href="#">Thông tin doanh nghiệp</a>
+            <a href="#">Liên hệ với chúng tôi</a>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm mb-4 border-secondary text-secondary">Mã dịch vụ</button>
+        <p class="mb-0">© 2026 LawwyFlix System - Designed with ❤️</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE = "/api";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initPage();
+
+            // Hiệu ứng Navbar cuộn
+            window.addEventListener('scroll', () => {
+                document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 20);
+            });
+
+            // Logic thanh tìm kiếm mượt mà
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+            
+            searchBtn.onclick = () => {
+                searchInput.classList.toggle('active');
+                if(searchInput.classList.contains('active')) searchInput.focus();
+            };
+
+            // Gõ phím tìm kiếm
+            searchInput.addEventListener('keyup', async (e) => {
+                if (e.key === 'Enter') {
+                    const keyword = e.target.value.trim();
+                    if (!keyword) {
+                        document.getElementById('main-section').style.display = 'block';
+                        document.getElementById('search-section').style.display = 'none';
+                        document.getElementById('hero-banner').style.display = 'flex';
+                        return;
+                    }
+                    
+                    try {
+                        const res = await fetch(`${API_BASE}/movies?keyword=${encodeURIComponent(keyword)}&pageSize=100`);
+                        const data = await res.json();
+                        const movies = data.data || data;
+
+                        document.getElementById('main-section').style.display = 'none';
+                        document.getElementById('hero-banner').style.display = 'none';
+                        document.getElementById('search-section').style.display = 'block';
+                        document.getElementById('search-title').innerText = `Kết quả tìm kiếm cho: "${keyword}"`;
+                        
+                        if(movies.length === 0) {
+                            document.getElementById('row-search').innerHTML = '<p class="text-white ms-4 fs-5">Không tìm thấy phim nào phù hợp.</p>';
+                        } else {
+                            renderMovies('row-search', movies);
+                        }
+                    } catch (err) { console.error("Search Lỗi!", err); }
+                }
+            });
+        });
+
+        async function initPage() {
+            try {
+                // Hiển thị khung chờ (Skeletons)
+                ['row-action', 'row-anime', 'row-scifi', 'row-horror'].forEach(id => renderSkeletons(id));
+
+                const res = await fetch(`${API_BASE}/movies?pageSize=50`);
+                const data = await res.json();
+                const movies = data.data || data;
+
+                if (movies.length > 0) {
+                    // Chọn phim ngẫu nhiên làm Banner
+                    const head = movies[Math.floor(Math.random() * movies.length)];
+                    const hero = document.getElementById('hero-banner');
+                    hero.classList.remove('skeleton');
+                    
+                    // Sử dụng ảnh nền (Nếu không có poster ngang thì lấy poster dọc bù vào)
+                    hero.style.backgroundImage = `url('${head.poster}')`;
+                    document.getElementById('h-title').innerText = head.title;
+                    document.getElementById('h-desc').innerText = head.description || "Khám phá thế giới điện ảnh đỉnh cao.";
+                    document.getElementById('h-btns').style.display = 'flex';
+                    
+                    document.getElementById('h-play-btn').onclick = () => location.href = `/watch.html?id=${head.id}`;
+                }
+
+                // Render phân loại phim theo GenreId đã nạp ở MovieSeed
+                renderMovies('row-anime', movies.filter(m => m.genreId === 1));
+                renderMovies('row-action', movies.filter(m => m.genreId === 2));
+                renderMovies('row-scifi', movies.filter(m => m.genreId === 3));
+                renderMovies('row-horror', movies.filter(m => m.genreId === 5)); // 5 là Horror
+
+            } catch (e) { console.error("Lỗi tải trang chủ!", e); }
+        }
+
+        function renderMovies(id, list) {
+            document.getElementById(id).innerHTML = list.map(m => `
+                <div class="movie-card" onclick="location.href='/watch.html?id=${m.id}'">
+                    <img src="${m.poster || 'https://via.placeholder.com/400x600?text=LawwyFlix'}">
+                    <div class="card-info">
+                        <div class="card-title">${m.title}</div>
+                        <div class="card-meta">
+                            <span>98% Match</span>
+                            <span class="year">${m.releaseYear || ''}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSkeletons(id) {
+            document.getElementById(id).innerHTML = Array(6).fill('<div class="movie-card skeleton"></div>').join('');
+        }
+    </script>
+</body>
+</html>

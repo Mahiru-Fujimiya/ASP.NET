@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>LawwyFlix Admin - Total Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --netflix-red: #e50914;
+            --dark-bg: #0a0a0a;
+            --card-bg: #181818;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            background: #000;
+            padding-top: 20px;
+            border-right: 1px solid #333;
+            z-index: 1000;
+        }
+
+            .sidebar .nav-link {
+                color: #b3b3b3;
+                padding: 12px 25px;
+                border-left: 4px solid transparent;
+                transition: 0.2s;
+                cursor: pointer;
+                text-decoration: none;
+                display: block;
+            }
+
+                .sidebar .nav-link:hover, .sidebar .nav-link.active {
+                    color: white;
+                    background: #1a1a1a;
+                    border-left-color: var(--netflix-red);
+                }
+
+            .sidebar i {
+                width: 30px;
+            }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            border-radius: 15px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+                background: #222;
+            }
+
+        .table {
+            color: white;
+            vertical-align: middle;
+            border-color: #333;
+        }
+
+        .movie-thumb {
+            width: 50px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn-netflix {
+            background: var(--netflix-red);
+            color: white;
+            border: none;
+        }
+
+            .btn-netflix:hover {
+                background: #b20710;
+                color: white;
+            }
+
+        .modal-content {
+            background: #181818;
+            border: 1px solid #333;
+            color: white;
+        }
+
+        .form-control, .form-select {
+            background: #2b2b2b;
+            border: 1px solid #444;
+            color: white;
+        }
+
+            .form-control:focus {
+                background: #333;
+                color: white;
+                border-color: var(--netflix-red);
+                box-shadow: none;
+            }
+
+        #preview-img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
+            border: 1px dashed #555;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="text-center mb-5">
+            <h3 class="text-danger fw-bold">LAWWYFLIX</h3>
+            <span class="badge bg-secondary">Boss Mode v4.0</span>
+        </div>
+        <nav class="nav flex-column">
+            <a class="nav-link active" onclick="switchTab('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a class="nav-link" onclick="switchTab('users')"><i class="fas fa-users"></i> Quản lý User</a>
+            <a class="nav-link" onclick="switchTab('movies')"><i class="fas fa-film"></i> Quản lý Movie</a>
+            <a class="nav-link" onclick="switchTab('episodes')"><i class="fas fa-play-circle"></i> Quản lý Episode</a>
+            <a class="nav-link" onclick="switchTab('genres')"><i class="fas fa-tag"></i> Quản lý Genre</a>
+            <a class="nav-link" onclick="switchTab('comments')"><i class="fas fa-comments"></i> Quản lý Comment</a>
+            <hr class="border-secondary">
+            <a class="nav-link" onclick="switchTab('settings')"><i class="fas fa-cog"></i> Cài đặt hệ thống</a>
+            <a class="nav-link text-danger" href="/logout"><i class="fas fa-power-off"></i> Đăng xuất</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <section id="sec-dashboard">
+            <h2 class="mb-4">🧭 Thống kê & Phân tích</h2>
+            <div class="row g-4 mb-4">
+                <div class="col-md-3"><div class="card stat-card"><h6>Users</h6><h2 id="total-users">--</h2></div></div>
+                <div class="col-md-3"><div class="card stat-card"><h6>Phim</h6><h2 id="total-movies">--</h2></div></div>
+                <div class="col-md-3"><div class="card stat-card"><h6>Thể loại</h6><h2 id="total-genres">--</h2></div></div>
+                <div class="col-md-3"><div class="card stat-card"><h6>Views</h6><h2>42.1K</h2></div></div>
+            </div>
+            <div class="card p-4"><h5>Biểu đồ tăng trưởng người dùng 2026</h5><canvas id="mainChart" height="80"></canvas></div>
+        </section>
+
+        <section id="sec-movies" style="display:none;">
+            <div class="d-flex justify-content-between mb-4"><h2>🎬 Quản lý phim</h2><button class="btn btn-netflix" onclick="openMovieModal()">+ Thêm & Upload</button></div>
+            <div class="card p-3"><table class="table table-hover text-center"><thead><tr><th>ID</th><th>Poster</th><th>Tiêu đề</th><th>Thể loại</th><th>Thao tác</th></tr></thead><tbody id="movie-tbody"></tbody></table></div>
+        </section>
+
+        <section id="sec-users" style="display:none;"><h2 class="mb-4">👤 Quản lý người dùng</h2><div class="card p-3"><table class="table table-hover"><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Quyền</th><th>Thao tác</th></tr></thead><tbody id="user-tbody"></tbody></table></div></section>
+
+        <section id="sec-episodes" style="display:none;"><div class="d-flex justify-content-between mb-4"><h2>🎞️ Quản lý tập phim</h2><div class="d-flex gap-2"><select id="movie-select-filter" class="form-select bg-dark text-white border-secondary w-auto" onchange="loadEpisodes()"></select><button class="btn btn-netflix" onclick="openEpisodeModal()">+ Thêm tập</button></div></div><div class="card p-3"><table class="table table-hover text-center"><thead><tr><th>Số tập</th><th>Tên tập</th><th>Thao tác</th></tr></thead><tbody id="episode-tbody"></tbody></table></div></section>
+
+        <section id="sec-genres" style="display:none;"><div class="d-flex justify-content-between mb-4"><h2>🏷️ Quản lý thể loại</h2><button class="btn btn-netflix" onclick="openGenreModal()">+ Thêm mới</button></div><div class="card p-3"><table class="table table-hover"><thead><tr><th>ID</th><th>Tên</th><th>Mô tả</th><th>Thao tác</th></tr></thead><tbody id="genre-tbody"></tbody></table></div></section>
+
+        <section id="sec-comments" style="display:none;"><h2 class="mb-4">💬 Quản lý bình luận</h2><div class="card p-3"><table class="table table-hover"><thead><tr><th>Người dùng</th><th>Nội dung</th><th>Thao tác</th></tr></thead><tbody id="comment-tbody"></tbody></table></div></section>
+
+        <section id="sec-settings" style="display:none;">
+            <h2 class="mb-4">⚙️ Cài đặt hệ thống</h2>
+            <div class="row"><div class="col-md-6"><div class="card p-4"><h5>Thông tin Website</h5><div class="mb-3"><label>Tên Website</label><input type="text" class="form-control" value="LawwyFlix"></div><div class="mb-3"><label>Email quản trị</label><input type="text" class="form-control" value="admin@lawwyflix.com"></div><button class="btn btn-netflix">Lưu cấu hình</button></div></div></div>
+        </section>
+    </div>
+
+    <div class="modal fade" id="movieModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5>Phim & Upload</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body">
+                    <div class="mb-3"><label>Tiêu đề</label><input type="text" id="movie-title" class="form-control"></div>
+                    <div class="mb-3"><label>Chọn ảnh Poster (Upload)</label><input type="file" id="movie-file" class="form-control" onchange="previewFile()"></div>
+                    <div class="text-center mb-3"><img id="preview-img"></div>
+                    <div class="mb-3"><label>Thể loại</label><select id="movie-genre-id" class="form-select"></select></div>
+                </div><div class="modal-footer"><button class="btn btn-netflix" onclick="uploadAndSaveMovie()">Tải lên & Lưu</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="epModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5>Thêm Tập Phim</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body">
+                    <div class="mb-3"><label>Phim</label><select id="ep-movie-id" class="form-select"></select></div>
+                    <div class="mb-3"><label>Tên tập</label><input type="text" id="ep-title" class="form-control" placeholder="Tập 1..."></div>
+                    <div class="mb-3"><label>Số tập</label><input type="number" id="ep-number" class="form-control" value="1"></div>
+                    <div class="mb-3"><label>Link Video (URL)</label><input type="text" id="ep-video-url" class="form-control" placeholder="http://..."></div>
+                </div><div class="modal-footer"><button class="btn btn-netflix" onclick="saveEpisode()">Lưu Tập Phim</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="genreModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5>Thêm Thể Loại</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body">
+                    <div class="mb-3"><label>Tên thể loại</label><input type="text" id="genre-name" class="form-control"></div>
+                    <div class="mb-3"><label>Mô tả</label><textarea id="genre-desc" class="form-control" rows="3"></textarea></div>
+                </div><div class="modal-footer"><button class="btn btn-netflix" onclick="saveGenre()">Lưu Thể Loại</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const API_BASE = "/api";
+        const TOKEN = localStorage.getItem('token');
+        let movieModal, epModal, genreModal;
+
+        // Ép đăng nhập nếu chưa có Token
+        if (!TOKEN) location.href = "/login.html";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            movieModal = new bootstrap.Modal(document.getElementById('movieModal'));
+            epModal = new bootstrap.Modal(document.getElementById('epModal'));
+            genreModal = new bootstrap.Modal(document.getElementById('genreModal'));
+            
+            initChart(); 
+            updateDashboard();
+        });
+
+        // Hàm fetch có kèm Token
+        async function fetchAuth(url, options = {}) {
+            options.headers = {
+                ...options.headers,
+                'Authorization': `Bearer ${TOKEN}`
+            };
+            const res = await fetch(url, options);
+            if (res.status === 401) location.href = "/login.html";
+            return res;
+        }
+
+        async function switchTab(tab) {
+            document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+            document.getElementById('sec-' + tab).style.display = 'block';
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            if (event) event.currentTarget.classList.add('active');
+            
+            if (tab === 'users') loadUsers();
+            if (tab === 'movies') { loadMovies(); loadGenresToSelect(); }
+            if (tab === 'genres') loadGenres();
+            if (tab === 'episodes') { loadMoviesToFilter(); }
+        }
+
+        // --- DASHBOARD ---
+        async function updateDashboard() {
+            try {
+                const res = await fetchAuth(`${API_BASE}/admin/dashboard`);
+                const data = await res.json();
+                document.getElementById('total-users').innerText = data.totalUsers;
+                document.getElementById('total-movies').innerText = data.totalMovies;
+                document.getElementById('total-genres').innerText = data.totalGenres;
+            } catch (e) { console.error("Lỗi Dashboard"); }
+        }
+
+        // --- MOVIES ---
+        async function loadMovies() {
+            const res = await fetchAuth(`${API_BASE}/movies?pageSize=100`);
+            const json = await res.json();
+            const list = json.data || json;
+            document.getElementById('movie-tbody').innerHTML = list.map(m => `
+                <tr>
+                    <td>${m.id}</td>
+                    <td><img src="${m.poster}" class="movie-thumb"></td>
+                    <td>${m.title}</td>
+                    <td>${m.genreId}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-info"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('movies', ${m.id}, loadMovies)"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openMovieModal() { movieModal.show(); }
+
+        function previewFile() {
+            const file = document.getElementById('movie-file').files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const img = document.getElementById('preview-img');
+                img.src = reader.result; 
+                img.style.display = 'inline-block';
+            };
+            if (file) reader.readAsDataURL(file);
+        }
+
+        async function uploadAndSaveMovie() {
+            const fileInput = document.getElementById('movie-file');
+            const title = document.getElementById('movie-title').value;
+            const genreId = document.getElementById('movie-genre-id').value;
+
+            if (!fileInput.files[0]) return alert("Chọn poster!");
+
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('genreId', genreId);
+            formData.append('file', fileInput.files[0]);
+
+            const res = await fetchAuth(`${API_BASE}/movies/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (res.ok) {
+                movieModal.hide();
+                loadMovies();
+                updateDashboard();
+            } else {
+                alert("Lỗi upload!");
+            }
+        }
+
+        // --- GENRES ---
+        async function loadGenres() {
+            const res = await fetchAuth(`${API_BASE}/genre`);
+            const list = await res.json();
+            document.getElementById('genre-tbody').innerHTML = list.map(g => `
+                <tr>
+                    <td>${g.id}</td>
+                    <td>${g.name}</td>
+                    <td>${g.description || ''}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('genre', ${g.id}, loadGenres)"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadGenresToSelect() {
+            const res = await fetchAuth(`${API_BASE}/genre`);
+            const list = await res.json();
+            document.getElementById('movie-genre-id').innerHTML = list.map(g => `<option value="${g.id}">${g.name}</option>`).join('');
+        }
+
+        function openGenreModal() { genreModal.show(); }
+
+        async function saveGenre() {
+            const name = document.getElementById('genre-name').value;
+            const description = document.getElementById('genre-desc').value;
+
+            if (!name) return alert("Nhập tên thể loại!");
+
+            const payload = { name, description };
+            const res = await fetchAuth(`${API_BASE}/genre`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                genreModal.hide();
+                loadGenres();
+                updateDashboard();
+            } else {
+                alert("Lỗi lưu thể loại!");
+            }
+        }
+
+        // --- USERS ---
+        async function loadUsers() {
+            const res = await fetchAuth(`${API_BASE}/admin/users`);
+            const list = await res.json();
+            document.getElementById('user-tbody').innerHTML = list.map(u => `
+                <tr>
+                    <td>${u.id}</td>
+                    <td>${u.username}</td>
+                    <td>${u.email}</td>
+                    <td><span class="badge bg-primary">${u.role}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('admin/users', ${u.id}, loadUsers)"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // --- EPISODES ---
+        async function loadMoviesToFilter() {
+            const res = await fetchAuth(`${API_BASE}/movies?pageSize=1000`);
+            const json = await res.json();
+            const list = json.data || json;
+            document.getElementById('movie-select-filter').innerHTML = list.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
+            loadEpisodes();
+        }
+
+        async function loadEpisodes() {
+            const movieId = document.getElementById('movie-select-filter').value;
+            if (!movieId) return;
+            const res = await fetchAuth(`${API_BASE}/episodes/movie/${movieId}`);
+            const list = await res.json();
+            document.getElementById('episode-tbody').innerHTML = list.map(e => `
+                <tr>
+                    <td>Tập ${e.episodeNumber}</td>
+                    <td>${e.title || 'Mặc định'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('episodes', ${e.id}, loadEpisodes)"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function openEpisodeModal() { 
+            const res = await fetchAuth(`${API_BASE}/movies?pageSize=1000`);
+            const json = await res.json();
+            const list = json.data || json;
+            document.getElementById('ep-movie-id').innerHTML = list.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
+            epModal.show(); 
+        }
+
+        async function saveEpisode() {
+            const title = document.getElementById('ep-title').value;
+            const episodeNumber = document.getElementById('ep-number').value;
+            const movieId = document.getElementById('ep-movie-id').value;
+            const videoUrl = document.getElementById('ep-video-url').value;
+
+            if (!videoUrl) return alert("Nhập link video!");
+
+            const payload = { movieId: parseInt(movieId), title, episodeNumber: parseInt(episodeNumber), videoUrl };
+            const res = await fetchAuth(`${API_BASE}/episodes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                epModal.hide();
+                document.getElementById('movie-select-filter').value = movieId;
+                loadEpisodes();
+            } else {
+                alert("Lỗi lưu tập phim!");
+            }
+        }
+
+        // --- UTILS ---
+        async function deleteItem(type, id, cb) {
+            if (confirm("Boss chắc chứ?")) {
+                const res = await fetchAuth(`${API_BASE}/${type}/${id}`, { method: 'DELETE' });
+                if (res.ok) cb(); else alert("Không xóa được!");
+            }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('mainChart');
+            if (ctx) {
+                new Chart(ctx, { 
+                    type: 'line', 
+                    data: { 
+                        labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], 
+                        datasets: [{ 
+                            label: 'Users', 
+                            data: [20, 45, 30, 70, 65, 90, 120], 
+                            borderColor: '#e50914',
+                            tension: 0.4
+                        }] 
+                    }, 
+                    options: { 
+                        plugins: { legend: { display: false } }, 
+                        scales: { y: { grid: { color: '#333' } }, x: { grid: { color: '#333' } } } 
+                    } 
+                });
+            }
+        }
+    </script>
+</body>
+</html>

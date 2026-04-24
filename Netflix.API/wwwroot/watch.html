@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đang xem - LawwyFlix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { padding-top: 0; }
+        .watch-navbar {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            padding: 20px 4%;
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+        }
+        .watch-navbar a { color: white; font-size: 1.2rem; font-weight: 600; text-shadow: 1px 1px 3px black; }
+        
+        .player-wrapper {
+            width: 100%;
+            height: 70vh;
+            background: #000;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        
+        .content-container {
+            padding: 40px 4%;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ep-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .ep-list::-webkit-scrollbar { width: 6px; }
+        .ep-list::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+
+        .ep-item {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+        .ep-item:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
+        .ep-item.active { background: rgba(229, 9, 20, 0.2); border-left: 4px solid var(--primary-color); }
+        
+        .comment-box textarea {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+        .comment-box textarea:focus { background: rgba(0,0,0,0.5); color: white; box-shadow: none; border-color: var(--primary-color); }
+        .comment-card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .rating-stars i { font-size: 1.5rem; color: #555; cursor: pointer; transition: 0.2s; }
+        .rating-stars i:hover, .rating-stars i.active { color: #f5c518; transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <!-- Nút Quay lại -->
+    <div class="watch-navbar d-flex justify-content-between align-items-center">
+        <a href="/index.html" class="text-decoration-none"><i class="fas fa-arrow-left me-3"></i>Quay lại</a>
+        <span class="text-white fw-bold fs-5" id="nav-title">Đang tải...</span>
+    </div>
+
+    <!-- KHUNG PHÁT VIDEO -->
+    <div class="player-wrapper" id="video-container">
+        <!-- JS sẽ inject thẻ video/iframe vào đây -->
+    </div>
+
+    <!-- KHU VỰC THÔNG TIN & BÌNH LUẬN -->
+    <div class="content-container row">
+        <div class="col-lg-8">
+            <!-- Thông tin phim -->
+            <div class="mb-5">
+                <h1 class="fw-bold mb-3" id="m-title" style="font-size: 3rem; letter-spacing: -1px;">Đang tải...</h1>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="text-success fw-bold">98% Match</span>
+                    <span class="text-muted fw-bold" id="m-year">2026</span>
+                    <span class="border border-secondary px-2 rounded text-muted fw-bold">18+</span>
+                    <span class="text-warning fw-bold"><i class="fas fa-star me-1"></i> <span id="m-rating">0.0</span> (<span id="m-count">0</span>)</span>
+                </div>
+                <p class="fs-5 text-light" style="line-height: 1.6;" id="m-desc">Mô tả phim...</p>
+                
+                <!-- Đánh giá sao -->
+                <div class="mt-4 glass-panel p-3 d-inline-block">
+                    <h6 class="mb-2 text-muted">Đánh giá phim này</h6>
+                    <div class="rating-stars" id="star-container">
+                        <i class="fas fa-star" data-val="1"></i><i class="fas fa-star" data-val="2"></i>
+                        <i class="fas fa-star" data-val="3"></i><i class="fas fa-star" data-val="4"></i><i class="fas fa-star" data-val="5"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bình luận -->
+            <div class="glass-panel p-4 mb-5">
+                <h4 class="mb-4"><i class="far fa-comments me-2"></i> Bình luận</h4>
+                <div class="d-flex mb-4 comment-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" class="rounded me-3" style="width:45px; height:45px">
+                    <div class="flex-grow-1">
+                        <textarea id="comment-input" class="form-control" rows="2" placeholder="Thêm bình luận công khai..."></textarea>
+                        <div class="text-end mt-3">
+                            <button class="btn-brand px-4 py-2 rounded" onclick="postComment()">Bình luận</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="comments-list"></div>
+            </div>
+        </div>
+
+        <!-- DANH SÁCH TẬP PHIM -->
+        <div class="col-lg-4">
+            <div class="glass-panel p-3">
+                <h4 class="mb-3 ps-2">Danh sách tập</h4>
+                <div class="ep-list" id="episodes-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "/api";
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if(!movieId) { location.href = "/index.html"; return; }
+            loadMovieDetails();
+            loadEpisodes();
+            loadComments();
+            setupRatingUI();
+        });
+
+        async function loadMovieDetails() {
+            const res = await fetch(`${API_BASE}/movies/${movieId}`);
+            const m = await res.json();
+            document.getElementById('m-title').innerText = m.title;
+            document.getElementById('nav-title').innerText = m.title;
+            document.getElementById('m-desc').innerText = m.description || "Không có mô tả.";
+            document.getElementById('m-year').innerText = m.releaseYear || '';
+            document.getElementById('m-rating').innerText = m.averageRating ? m.averageRating.toFixed(1) : '0.0';
+            document.getElementById('m-count').innerText = m.ratingCount || 0;
+            document.title = `${m.title} - LawwyFlix`;
+        }
+
+        // --- Logic Video Player (Hỗ trợ YouTube & MP4) ---
+        function getYouTubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function playVideo(url, el) {
+            if (url.includes('commondatastorage.googleapis.com')) {
+                url = 'https://www.youtube.com/watch?v=aqz-KE-bpKQ';
+            }
+
+            const videoContainer = document.getElementById('video-container');
+            const ytId = getYouTubeId(url);
+
+            if (ytId) {
+                videoContainer.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${ytId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                videoContainer.innerHTML = `
+                    <video controls autoplay style="width: 100%; height: 100%; outline: none; background: #000;">
+                        <source src="${url}" type="video/mp4">
+                        Trình duyệt không hỗ trợ xem video này.
+                    </video>`;
+            }
+
+            if(el) {
+                document.querySelectorAll('.ep-item').forEach(i => i.classList.remove('active'));
+                el.classList.add('active');
+            }
+        }
+
+        async function loadEpisodes() {
+            const res = await fetch(`${API_BASE}/episodes/movie/${movieId}`);
+            const episodes = await res.json();
+            const container = document.getElementById('episodes-container');
+
+            if(episodes.length > 0) {
+                container.innerHTML = episodes.map((ep, index) => `
+                    <div class="ep-item ${index === 0 ? 'active' : ''}" onclick="playVideo('${ep.videoUrl}', this)">
+                        <div class="fw-bold">Tập ${ep.episodeNumber}: <span class="fw-normal">${ep.title}</span></div>
+                        <i class="fas fa-play-circle fs-5 opacity-75"></i>
+                    </div>
+                `).join('');
+                playVideo(episodes[0].videoUrl);
+            } else {
+                container.innerHTML = `
+                    <div class="ep-item active" onclick="playVideo('https://www.youtube.com/watch?v=aqz-KE-bpKQ', this)">
+                        <div class="fw-bold">Phim Hoàn Chỉnh</div>
+                        <i class="fas fa-play-circle fs-5 text-primary"></i>
+                    </div>`;
+                playVideo('https://www.youtube.com/watch?v=aqz-KE-bpKQ');
+            }
+        }
+
+        // --- Logic Đánh giá (Rating) ---
+        function setupRatingUI() {
+            const stars = document.querySelectorAll('.rating-stars i');
+            stars.forEach(s => {
+                s.onclick = async () => {
+                    const val = parseInt(s.getAttribute('data-val'));
+                    const TOKEN = localStorage.getItem('token');
+                    if(!TOKEN) {
+                        alert("Vui lòng đăng nhập để đánh giá!");
+                        location.href = "/login.html"; return;
+                    }
+                    try {
+                        const res = await fetch(`${API_BASE}/movies/${movieId}/rate`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${TOKEN}` },
+                            body: JSON.stringify({ rating: val })
+                        });
+                        if(res.ok) {
+                            stars.forEach(st => st.classList.remove('active'));
+                            for(let i=0; i<val; i++) stars[i].classList.add('active');
+                            loadMovieDetails(); // Cập nhật lại UI số điểm
+                        }
+                    } catch(e) { console.error(e); }
+                };
+            });
+        }
+
+        // --- Logic Bình luận ---
+        async function loadComments() {
+            const res = await fetch(`${API_BASE}/movies/${movieId}/comments`);
+            const comments = await res.json();
+            document.getElementById('comments-list').innerHTML = comments.map(c => `
+                <div class="comment-card d-flex align-items-start">
+                    <img src="https://ui-avatars.com/api/?name=${c.username}&background=random&color=fff" class="rounded me-3" style="width:40px; height:40px">
+                    <div>
+                        <div class="mb-1"><strong class="me-2">${c.username}</strong><small class="text-secondary">Vừa xong</small></div>
+                        <p class="mb-0 text-light">${c.content}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function postComment() {
+            const content = document.getElementById('comment-input').value;
+            if(!content) return;
+            const TOKEN = localStorage.getItem('token');
+            if(!TOKEN) { alert("Vui lòng đăng nhập!"); location.href = "/login.html"; return; }
+
+            const res = await fetch(`${API_BASE}/movies/${movieId}/comments`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${TOKEN}` },
+                body: JSON.stringify(content)
+            });
+            if(res.ok) {
+                document.getElementById('comment-input').value = "";
+                loadComments();
+            }
+        }
+    </script>
+</body>
+</html>
